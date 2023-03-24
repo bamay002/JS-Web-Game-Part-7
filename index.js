@@ -5,7 +5,17 @@ const pc = newPlayableCharacter(100, 110)
 const npc = newNonPlayableCharacter(50, 300)
 
 // have the NPC start walking east immediately
-npc.walkEast(2000)
+async function moveNPC(){           //make a asycn function so i can await my other async function so that all the stuff inside will await for one other to finish before it runs
+    await npc.walkNorth(1400)
+    await npc.walkEast(1200)
+    await npc.walkSouth(300)
+    await npc.walkEast(1500)
+    await npc.walkSouth(1500)
+    await npc.walkWest(2700)
+    await npc.walkNorth(400)
+}
+
+moveNPC()                       //GETS FXN ABOVE TO WORK
 
 // Create the inventory
 const inventory = newInventory()
