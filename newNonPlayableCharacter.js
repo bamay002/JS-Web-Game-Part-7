@@ -23,9 +23,11 @@ function newNonPlayableCharacter(x, y) {
 
     setInterval(moveCharacter, 1)
 
-    function walkEast() {
+    async function walkEast(time) {         //made fxn async which means just wait to do task & added a parameter of time so in index.js i can set a time for how long i want npc to walk east
         direction = 'east'
         element.src = `./assets/red-character/east.gif`
+        await sleep(time)                   // added await since its asycn and then sleep(pause)(time which will be said in index)
+        return stop()                       //return stop after my await is done so my npc stops walking
     }
 
     function walkNorth() {
@@ -56,4 +58,11 @@ function newNonPlayableCharacter(x, y) {
         walkSouth: walkSouth,
         stop: stop
     }
+
+    function sleep(time){                   //sleep is going to wait for time and then run
+    return new Promise(resolve => {         //returninging a promise
+        setTimeout(resolve, time)
+    })  
+}
+
 }
